@@ -1,0 +1,5 @@
+# All the dependencies in this file have a vulnerability or are within a vulnerable range
+# Future use: Please make sure you provide context to the vulnerability you are adding (what CVE does it introduce)
+
+# Use of a Broken or Risky Cryptographic Algorithm in pyjwt CVE-2022-29217
+pyjwt == 1.5.2
