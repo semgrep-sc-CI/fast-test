@@ -3,3 +3,4 @@
 
 # Use of a Broken or Risky Cryptographic Algorithm in pyjwt CVE-2022-29217
 pyjwt == 1.5.2
+PyYAML==5.1
