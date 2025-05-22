@@ -1,16 +1,22 @@
-version: '3.9'  # optional since Compose v1.27.0
+version: '3.3'
 
 services:
-  kong-database:
-    image: postgres:9.5
-    container_name: kong-postgres
-    environment:
-      - POSTGRES_USER=kong
-      - POSTGRES_PASSWORD=e9dbc9a39c5532647a0e722bb0a87a3d86063bad
-      - POSTGRES_DB=kong
-      - POSTGRES_HOST_AUTH_METHOD=trust
+  database:
+    image: postgres:14.1-alpine
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - /home/deep/sunking/data/lib/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
-      timeout: 5s
-      retries: 5
+      timeout: 10s
+      retries: 3
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: e9dbc9a39c5532647a0e722bb0a87a3d86063bad
+      POSTGRES_DB: dev_skp_wallet_management
+    networks:
+      - um_network
